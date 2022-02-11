@@ -10,6 +10,7 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/hofstadter-io/hof/lib/dotpath"
@@ -129,6 +130,14 @@ func (v *vislogger) Normal() {
 
 func (v *vislogger) RGB(rgb string) {
 	pairs := []parampair{{Key: "color", Value: fmt.Sprintf("rgb:%s saturation:1.0", rgb)}}
+	lnquery(v.bulbid, "state", "PUT", pairs)
+}
+
+func (v *vislogger) HEX(hex string) {
+	if !strings.HasPrefix(hex, "#") {
+		hex = fmt.Sprintf("#%s", hex)
+	}
+	pairs := []parampair{{Key: "color", Value: fmt.Sprintf("%s saturation:1.0", hex)}}
 	lnquery(v.bulbid, "state", "PUT", pairs)
 }
 

@@ -24,5 +24,6 @@ func main() {
 	//yay success...
 	//blb.Normal()
 	//	blb.Dim()
-	blb.Party()
+	//blb.Party()
+	blb.HEX("#0000FF")
 }
