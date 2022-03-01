@@ -1,29 +1,32 @@
 package main
 
 import (
-	"github.com/wissam/beacon/internal/vislog"
+	"log"
+	"time"
+
+	"github.com/wissam/beacon/pkg/vislog"
 )
+
+//fuck the tui, useless for now.. make a webhook experiment?
 
 func main() {
 	blb := vislog.NewBulb("d073d567639b")
-	//log.Println("Pulse from white to red 5 times, persists as red")
-	//blb.Error()
-	//time.Sleep(12 * time.Second)
-	//log.Println("Pulse from red to orange 5 times, reverts back to red")
+	//blb.ShowAll()
+	//blb.Normal()
+	//blb.ShowAll()
+	//j	blb.Normal()
+	//	time.Sleep(15 * time.Second)
+	blb.Warning() // should stay orange after this...
+	//time.Sleep(5 * time.Second)
+	time.Sleep(15 * time.Second)
 	//blb.Warning()
-	//time.Sleep(12 * time.Second)
-	//log.Println("Goes back to white")
+	blb.Error() //should stay red
 	//blb.Normal()
-	//SUCCESS~
-	// now what? :P
-	// I don't like how the colours are organised still, it is the wrong
-	// datastructure , so 1 I either go search for the right one and find it
-	// somehow? or go thru the webserver work to build webhooks and test it
-	// with github
-	//blb.RGB("255,0,255")
-	//yay success...
-	//blb.Normal()
-	//	blb.Dim()
-	//blb.Party()
-	blb.HEX("#0000FF")
+	time.Sleep(15 * time.Second)
+	//logic is still wrong... should be false not true ...! brb wc
+	blb.Warning() //should stay red
+	//snssend.Send()
+	//emailsend.Send()
+	log.Println(blb.Status())
+	//something wrong... my logic is flawed...
 }
